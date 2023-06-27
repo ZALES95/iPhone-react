@@ -1,0 +1,171 @@
+@use "./colors" as *;
+@use "./components" as *;
+
+.header {
+	background-image: url("../assets/header-bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	color: $main-text;
+	position: relative;
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__desc {
+		font-size: 2rem;
+		line-height: 160%;
+		margin-bottom: 2.4rem;
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 6rem;
+		line-height: 100%;
+		letter-spacing: 0.5px;
+		margin-bottom: 1.6rem;
+		margin-top: 5rem;
+	}
+
+	&__image {
+		width: 80%;
+	}
+
+	&__link {
+		border: 1px solid $main-text;
+		color: $main-text;
+		letter-spacing: 0.5px;
+		border-radius: 50px;
+		text-align: center;
+		align-self: start;
+		font-weight: 700;
+		margin-right: 0;
+		transition: 0.3s;
+		z-index: 100;
+		background: none;
+
+		&:hover {
+			background-color: $main-text;
+			color: $dark-text;
+		}
+	}
+
+	&__form {
+		.header__link {
+			margin-bottom: 10rem;
+		}
+	}
+
+	&__allInputs {
+		display: flex;
+		align-items: center;
+		gap: 2rem 3rem;
+		flex-wrap: wrap;
+		margin-top: 2.4rem;
+		margin-bottom: 3.2rem;
+	}
+
+	&__input {
+		background: $main-text;
+		border: none;
+		padding: 1rem;
+		height: 56px;
+		font-size: 2.4rem;
+		color: $dark-text;
+		padding-left: 1rem;
+		min-width: 150px;
+		border-radius: 8px;
+		transition: box-shadow 0.15s;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+
+		&::placeholder {
+			color: $dark-text;
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow: inset 0px 0px 4px 0px $dark-text;
+		}
+	}
+
+     &__errorMsg {
+          font-size: 2rem;
+          font-weight: 700;
+		margin-bottom: 2.4rem;
+     }
+}
+
+@media (min-width: 992px) {
+	.header {
+		padding-right: 1rem;
+		.wrapper {
+			flex-direction: row;
+		}
+
+		&__image {
+			width: 60%;
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.header {
+		&__desc {
+			font-size: 1.6rem;
+			line-height: 150%;
+		}
+
+		&__title {
+			font-size: 5.6rem;
+			line-height: 95%;
+		}
+
+		&__image {
+			margin-top: -8rem;
+		}
+
+		&__link {
+			padding: 1.4rem 3rem;
+			border: 1px solid $main-text;
+			color: $main-text;
+			font-size: 2.2rem;
+			letter-spacing: 0.5px;
+			border-radius: 50px;
+			text-align: center;
+			align-self: start;
+		}
+	}
+}
+@media (max-width: 768px) {
+	.header {
+		&__image {
+			display: none;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.header {
+		padding-right: 3rem;
+		.wrapper {
+			flex-direction: row;
+		}
+
+		&__image {
+			width: 50%;
+		}
+	}
+}

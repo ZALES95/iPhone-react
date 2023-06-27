@@ -1,0 +1,71 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "DM Sans", sans-serif;
+	color: rgb(255, 255, 255);
+	background-color: #fff;
+	position: relative;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+textarea {
+	resize: vertical;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+.btn-small {
+	padding: 1rem 2rem;
+	font-size: 1.8rem;
+}
+
+.btn-big {
+	padding: 1.6rem 3.2rem;
+	font-size: 2.4rem;
+}
+
+@media (max-width: 768px) {
+	.nav {
+		display: none;
+	}
+}
