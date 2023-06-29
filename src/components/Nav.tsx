@@ -1,18 +1,19 @@
-import React, { useContext } from "react"
-import { CategoryContext } from "../Contexts/categoryContext"
+import React from "react"
 import CTA from "./CTA"
 import { Link } from "react-router-dom"
 import "../scss/nav.scss"
+import { useDispatch } from "react-redux"
+import { setCategory } from "../features/category"
 
 interface NavProps {
 	link: boolean
 }
 
 const Nav: React.FC<NavProps> = props => {
-	const { setSelectedCategory } = useContext<any>(CategoryContext)
+	const dispatch = useDispatch()
 
 	const handleCategoryChange = (category: string) => {
-		setTimeout(() => setSelectedCategory(category), 300)
+		setTimeout(() => dispatch(setCategory(category)), 300)
 	}
 
 	return (
