@@ -1,0 +1,43 @@
+@use "./colors" as *;
+
+.btn {
+	border: 1px solid $main-text;
+	color: $main-text;
+	letter-spacing: 0.5px;
+	border-radius: 50px;
+	text-align: center;
+	align-self: start;
+	font-weight: 700;
+	margin-right: 0;
+	transition: 0.3s;
+	z-index: 100;
+	background: none;
+
+	&:hover {
+		background-color: $main-text;
+		color: $dark-text;
+	}
+}
+
+.small {
+	padding: 1rem 2rem;
+	font-size: 1.8rem;
+}
+
+.big {
+	padding: 1.6rem 3.2rem;
+	font-size: 2.4rem;
+}
+
+@media (max-width: 992px) {
+	.btn {
+		padding: 1.4rem 3rem;
+		border: 1px solid $main-text;
+		color: $main-text;
+		font-size: 2.2rem;
+		letter-spacing: 0.5px;
+		border-radius: 50px;
+		text-align: center;
+		align-self: start;
+	}
+}

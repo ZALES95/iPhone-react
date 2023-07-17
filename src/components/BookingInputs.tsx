@@ -1,5 +1,5 @@
 import "../scss/header.scss"
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import HeaderFunctionality from "./HeaderFunctionality"
 import CTA from "./CTA"
 import DatePicker from "react-datepicker"
@@ -7,11 +7,12 @@ import "react-datepicker/dist/react-datepicker.css"
 import { registerLocale } from "react-datepicker"
 import pl from "date-fns/locale/pl"
 registerLocale("pl", pl)
-import PhotosData from "../PhotosData"
 import { nanoid } from "nanoid"
 import PurchaseInterface from "../interfaces/PurchaseInterface"
 import { StorageContext } from "../Contexts/storageContext"
 import HeaderPhoto2 from "../assets/header-photo2.png"
+import { devicesImagesRef } from "../firebaseSetup"
+import { getDocs } from "firebase/firestore"
 
 const BookingInputs: React.FC = () => {
 	const { addingDevice } = useContext<any>(StorageContext)
@@ -27,6 +28,26 @@ const BookingInputs: React.FC = () => {
 		purchasePrice: "",
 		img: "",
 	})
+	const [photosData, setPhotosData] =
+		useState<{ img: string; name: string; id: string }[]>()
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const snapshot = await getDocs(devicesImagesRef)
+				const allDevicesImages: any[] = []
+
+				snapshot.docs.forEach(doc => {
+					allDevicesImages.push({ ...doc.data(), id: doc.id })
+				})
+
+				setPhotosData(allDevicesImages)
+			} catch (error) {
+				console.error(error)
+			}
+		}
+		fetchData()
+	}, [])
 
 	const handleChange = (e: any) => {
 		const { name, type, checked } = e.target
@@ -39,7 +60,7 @@ const BookingInputs: React.FC = () => {
 			}
 		}
 		if (name === "name") {
-			let searchedPhoto = PhotosData.find(el => el.name === value)?.img
+			let searchedPhoto = photosData?.find(el => el.name === value)?.img
 			if (searchedPhoto === undefined) {
 				searchedPhoto = HeaderPhoto2
 			}
@@ -106,16 +127,18 @@ const BookingInputs: React.FC = () => {
 
 	React.useEffect(() => {
 		const optionsArr: JSX.Element[] = []
-		for (const phone of PhotosData) {
-			optionsArr.push(
-				<option key={nanoid()} value={phone.name}>
-					{phone.name}
-				</option>
-			)
+		if (photosData) {
+			for (const phone of photosData) {
+				optionsArr.push(
+					<option key={nanoid()} value={phone.name}>
+						{phone.name}
+					</option>
+				)
+			}
 		}
 
 		setNameOptions(optionsArr)
-	}, [])
+	}, [photosData])
 
 	return (
 		<HeaderFunctionality img={{ display: false }}>

@@ -18,6 +18,7 @@ export const db = getFirestore()
 
 //collection reference (podajemy skąd i jaka kolekcja)
 export const devicesRef = collection(db, "devices")
+export const devicesImagesRef = collection(db, 'devicesImages')
 
 //ordered by sth
 export const orderedDevicesRef = query(devicesRef, orderBy("createdAt", "desc"))

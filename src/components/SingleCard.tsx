@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import "../scss/singleCard.scss"
+// import "../scss/singleCard.scss"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { registerLocale } from "react-datepicker"
@@ -8,6 +8,7 @@ registerLocale("pl", pl)
 import { StorageContext } from "../Contexts/storageContext"
 import SalesInterface from "../interfaces/SalesInterface"
 import PhoneInterface from "../interfaces/PhoneInterface"
+import SingleCardStyles from "../scss/SingleCard.module.scss"
 
 interface SingleCardProps {
 	info: PhoneInterface
@@ -59,62 +60,58 @@ const SingleCard: React.FC<SingleCardProps> = props => {
 	}
 
 	return (
-		<div className='singleCard' id={props.info.id}>
-			<i className='fa-regular fa-trash-can' onClick={handleDeleting}></i>
-			<h3 className='singleCard__title'>{props.info.name}</h3>
-			<img src={props.info.img} alt='phone pic' className='singleCard__image' />
-			<div className='singleCard__infos'>
-				<p className='singleCard__info'>Kolor - {props.info.color}</p>
+		<div
+			className={`${SingleCardStyles.singleCard} singleCard`}
+			id={props.info.id}>
+			<i
+				className={`fa-regular fa-trash-can ${SingleCardStyles.trashIcon}`}
+				onClick={handleDeleting}></i>
+			<h3 className={SingleCardStyles.title}>{props.info.name}</h3>
+			<img
+				src={props.info.img}
+				alt='phone pic'
+				className={SingleCardStyles.image}
+			/>
+			<div className={SingleCardStyles.infos}>
+				<p>Kolor - {props.info.color}</p>
 				{props.info.name !== "Sony WH-1000XM3" && (
 					<>
-						<p className='singleCard__info'>
-							Kondycja baterii - {props.info.battery}%
-						</p>
-						<p className='singleCard__info'>Pamięć - {props.info.memory}GB</p>
-						<p className='singleCard__info'>
-							Pudełko - {props.info.box === "true" ? "tak" : "nie"}
-						</p>
+						<p>Kondycja baterii - {props.info.battery}%</p>
+						<p>Pamięć - {props.info.memory}GB</p>
+						<p>Pudełko - {props.info.box === "true" ? "tak" : "nie"}</p>
 					</>
 				)}
-				<p className='singleCard__info'>
-					Kupione za - {props.info.purchasePrice}zł
-				</p>
-				<p className='singleCard__info'>
-					Data kupna - {props.info.purchaseDate}
-				</p>
+				<p>Kupione za - {props.info.purchasePrice}zł</p>
+				<p>Data kupna - {props.info.purchaseDate}</p>
 				{props.info.isSold ? (
 					<>
-						<p className='singleCard__info'>
-							Sprzedane za - {props.info.salePrice}zł
-						</p>
-						<p className='singleCard__info'>
-							Data sprzedaży - {props.info.saleDate}
-						</p>
+						<p>Sprzedane za - {props.info.salePrice}zł</p>
+						<p>Data sprzedaży - {props.info.saleDate}</p>
 					</>
 				) : (
-					<div className='singleCard__form'>
+					<div className={SingleCardStyles.form}>
 						<label
 							htmlFor='singleCard__checkbox'
-							className='singleCard__saleString'>
+							className={SingleCardStyles.saleString}>
 							Sprzedaj
 						</label>
 						<input
 							type='checkbox'
 							id='singleCard__checkbox'
-							className='singleCard__checkbox'
+							className={SingleCardStyles.checkbox}
 							name='isSoldCheckbox'
 							checked={salesForm.isSoldCheckbox}
 							onChange={handleChange}
 						/>
 						{salesForm.isSoldCheckbox && (
-							<form onSubmit={handleSubmit} className='singleCard__form'>
+							<form onSubmit={handleSubmit} className={SingleCardStyles.form}>
 								<input
 									type='number'
 									name='sellingPrice'
 									placeholder='Wpisz za ile sprzedano'
 									value={salesForm.sellingPrice}
 									onChange={handleChange}
-									className='singleCard__input'
+									className={SingleCardStyles.input}
 								/>
 								<DatePicker
 									placeholderText='Wpisz kiedy sprzedano'
@@ -129,9 +126,11 @@ const SingleCard: React.FC<SingleCardProps> = props => {
 											}
 										})
 									}
-									className='singleCard__input'
+									className={SingleCardStyles.input}
 								/>
-								<button className='singleCard__submitBtn'>Zatwierdź</button>
+								<button className={SingleCardStyles.submitBtn}>
+									Zatwierdź
+								</button>
 							</form>
 						)}
 					</div>
