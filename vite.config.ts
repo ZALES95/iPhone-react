@@ -33,7 +33,7 @@ export default defineConfig({
 				],
 			},
 			filter: (file: string) => {
-				return file.includes("./src/assets/header-bg.jpg")
+				return !file.includes("./src/assets/header-bg.jpg")
 			},
 		}),
 	],
