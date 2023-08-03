@@ -22,7 +22,6 @@ const HeaderFunctionality: React.FC<HeaderFunctionalityProps> = props => {
 					/>
 				)}
 			</div>
-			<div className='white-block'></div>
 		</header>
 	)
 }
