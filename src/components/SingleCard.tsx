@@ -78,7 +78,7 @@ const SingleCard: React.FC<SingleCardProps> = props => {
 					<>
 						<p>Kondycja baterii - {props.info.battery}%</p>
 						<p>Pamięć - {props.info.memory}GB</p>
-						<p>Pudełko - {props.info.box === "true" ? "tak" : "nie"}</p>
+						<p>Pudełko - {props.info.box === "tak" ? "tak" : "nie"}</p>
 					</>
 				)}
 				<p>Kupione za - {props.info.purchasePrice}zł</p>
